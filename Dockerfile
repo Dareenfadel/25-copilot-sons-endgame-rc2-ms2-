@@ -1,0 +1,12 @@
+# Start with Java 17 base image
+FROM openjdk:21-jdk-slim
+
+# Add app jar
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+
+# Expose port
+EXPOSE 8080
+
+# Run the jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
