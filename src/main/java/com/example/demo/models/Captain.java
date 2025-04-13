@@ -24,6 +24,7 @@ public class Captain {
     private List<Trip> trips;
     // Default constructor
     public Captain() {
+        this.avgRatingScore = 0.0;  // Default value for avgRatingScore
     }
 
     // Partial constructor (with name, license number, and rating score)
