@@ -1,6 +1,12 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.Captain;
+import com.example.demo.models.Customer;
+import com.example.demo.models.Payment;
 import com.example.demo.models.Trip;
+import com.example.demo.services.CaptainService;
+import com.example.demo.services.CustomerService;
+import com.example.demo.services.PaymentService;
 import com.example.demo.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +20,18 @@ import java.util.List;
 public class TripController {
 
     private final TripService tripService;
+    private final CaptainService captainService;
 
     @Autowired
-    public TripController(TripService tripService) {
+    public TripController(TripService tripService, CaptainService captainService) {
         this.tripService = tripService;
+        this.captainService = captainService;
+
     }
 
     @PostMapping("/addTrip")
     public ResponseEntity<Trip> addTrip(@RequestBody Trip trip) {
+        //currently allowing null attributes, awaiting test files
         try {
             Trip createdTrip = tripService.addTrip(trip);
             return new ResponseEntity<>(createdTrip, HttpStatus.CREATED);
@@ -80,6 +90,10 @@ public class TripController {
     @GetMapping("/findByCaptainId")
     public ResponseEntity<List<Trip>> findTripsByCaptainId(@RequestParam Long captainId) {
         try {
+            Captain captain = captainService.getCaptainById(captainId);
+            if (captain == null) {
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
             List<Trip> trips = tripService.findTripsByCaptainId(captainId);
             return new ResponseEntity<>(trips, HttpStatus.OK);
         } catch (Exception e) {

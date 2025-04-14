@@ -35,12 +35,14 @@ public class TripService {
     }
 
     public Trip updateTrip(Long id, Trip trip) {
+        //To update trip details such as origin, destination, or cost.
         Trip existingTrip = getTripById(id);
-
-        existingTrip.setOrigin(trip.getOrigin());
-        existingTrip.setDestination(trip.getDestination());
-        existingTrip.setTripCost(trip.getTripCost());
-//        existingTrip.setTripDate(trip.getTripDate());
+        if(trip.getOrigin()!=null)
+            existingTrip.setOrigin(trip.getOrigin());
+        if(trip.getDestination()!=null)
+            existingTrip.setDestination(trip.getDestination());
+        if(trip.getTripCost()!=0)
+            existingTrip.setTripCost(trip.getTripCost());
         return tripRepository.save(existingTrip);
     }
 
