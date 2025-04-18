@@ -39,6 +39,18 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin_password
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+
+
   app:
     build: .
     container_name: springboot-app
@@ -52,7 +64,10 @@ services:
       - SPRING_DATA_MONGODB_PORT=27017
       - SPRING_DATA_MONGODB_DATABASE=demo
       - SPRING_DATA_MONGODB_URI=mongodb://root:example@mongodb:27017/demo?authSource=admin
-      - SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5000/your_postgres_db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/your_postgres_db
+      - SPRING_DATASOURCE_USERNAME=your_pg_username
+      - SPRING_DATASOURCE_PASSWORD=your_pg_password
+
 
 volumes:
   mongo_data:
