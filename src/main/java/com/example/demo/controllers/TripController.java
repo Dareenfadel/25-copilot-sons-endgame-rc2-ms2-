@@ -30,74 +30,52 @@ public class TripController {
     }
 
     @PostMapping("/addTrip")
-    public ResponseEntity<Trip> addTrip(@RequestBody Trip trip) {
+    public Trip addTrip(@RequestBody Trip trip){
         //currently allowing null attributes, awaiting test files
-        try {
-            Trip createdTrip = tripService.addTrip(trip);
-            return new ResponseEntity<>(createdTrip, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+            return tripService.addTrip(trip);
     }
 
     @GetMapping("/allTrips")
-    public ResponseEntity<List<Trip>> getAllTrips() {
-        List<Trip> trips = tripService.getAllTrips();
-        return new ResponseEntity<>(trips, HttpStatus.OK);
+    public List<Trip> getAllTrips(){
+        return tripService.getAllTrips();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Trip> getTripById(@PathVariable Long id) {
-        try {
-            Trip trip = tripService.getTripById(id);
-            return new ResponseEntity<>(trip, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+    public Trip getTripById(@PathVariable Long id) {
+        return tripService.getTripById(id);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Trip> updateTrip(@PathVariable Long id, @RequestBody Trip trip) {
-        try {
-            Trip updatedTrip = tripService.updateTrip(id, trip);
-            return new ResponseEntity<>(updatedTrip, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+    public Trip updateTrip(@PathVariable Long id, @RequestBody Trip trip){
+        return tripService.updateTrip(id, trip);
     }
 
+
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteTrip(@PathVariable Long id) {
+    public String deleteTrip(@PathVariable Long id){
         try {
             tripService.deleteTrip(id);
-            return new ResponseEntity<>("Trip deleted successfully.", HttpStatus.OK);
+            return "Trip deleted successfully.";
         } catch (Exception e) {
-            return new ResponseEntity<>("Trip not found.", HttpStatus.NOT_FOUND);
+            return "Trip not found.";
         }
     }
 
     @GetMapping("/findByDateRange")
-    public ResponseEntity<List<Trip>> findTripsWithinDateRange(
-            @RequestParam LocalDate startDate, @RequestParam LocalDate endDate) {
-        try {
-            List<Trip> trips = tripService.findTripsWithinDateRange(startDate.atStartOfDay(), endDate.atTime(23, 59, 59));
-            return new ResponseEntity<>(trips, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+    public List<Trip> findTripsWithinDateRange(@RequestParam LocalDate startDate, @RequestParam
+    LocalDate endDate){
+        return tripService.findTripsWithinDateRange(startDate.atStartOfDay(), endDate.atTime(23, 59, 59));
     }
 
     @GetMapping("/findByCaptainId")
-    public ResponseEntity<List<Trip>> findTripsByCaptainId(@RequestParam Long captainId) {
-        try {
+    public List<Trip> findTripsByCaptainId(@RequestParam Long captainId){
             Captain captain = captainService.getCaptainById(captainId);
             if (captain == null) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                throw new IllegalArgumentException("Captain not found with id: " + captainId);
             }
-            List<Trip> trips = tripService.findTripsByCaptainId(captainId);
-            return new ResponseEntity<>(trips, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+            return tripService.findTripsByCaptainId(captainId);
+
     }
+
 }
