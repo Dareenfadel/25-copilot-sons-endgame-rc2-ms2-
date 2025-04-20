@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Payment")
+@Table(name = "payments")
 public class Payment {
 
     @Id
