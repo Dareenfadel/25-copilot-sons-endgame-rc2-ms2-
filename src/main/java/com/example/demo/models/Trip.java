@@ -52,7 +52,12 @@ public class Trip {
         this.customer = customer;
         this.payment = payment;
     }
-
+    public Trip(LocalDateTime tripDate, String origin, String destination, double tripCost) {
+        this.tripDate = tripDate;
+        this.origin = origin;
+        this.destination = destination;
+        this.tripCost = tripCost;
+    }
     public long getId() {
         return id;
     }
