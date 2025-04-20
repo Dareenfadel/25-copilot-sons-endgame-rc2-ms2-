@@ -2,7 +2,7 @@ package com.example.demo.models;
 
 
 import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.UUID;
 
 @Entity
