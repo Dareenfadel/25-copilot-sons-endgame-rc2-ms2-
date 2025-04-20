@@ -1,5 +1,4 @@
-# Start with Java 17 base image
-FROM openjdk:21-jdk-slim
+FROM openjdk:25-jdk-slim
 
 # Add app jar
 ARG JAR_FILE=target/*.jar
