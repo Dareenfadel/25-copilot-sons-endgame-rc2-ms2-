@@ -11,11 +11,11 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    private double amount;
+    private Double amount;
     private String paymentMethod;
-    private boolean paymentStatus;
+    private Boolean paymentStatus;
 
     @OneToOne
     @JoinColumn(name = "trip_id", referencedColumnName = "id")
@@ -32,6 +32,14 @@ public class Payment {
     }
 
     public Payment(double amount, String paymentMethod, boolean paymentStatus, Trip trip) {
+        this.amount = amount;
+        this.paymentMethod = paymentMethod;
+        this.paymentStatus = paymentStatus;
+        this.trip = trip;
+    }
+
+    public Payment(long id, double amount, String paymentMethod, boolean paymentStatus, Trip trip) {
+        this.id = id;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
