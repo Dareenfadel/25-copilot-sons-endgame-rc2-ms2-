@@ -73,8 +73,10 @@ public class TripController {
     public List<Trip> findTripsByCaptainId(@RequestParam Long captainId){
             Captain captain = captainService.getCaptainById(captainId);
             if (captain == null) {
-                throw new IllegalArgumentException("Captain not found with id: " + captainId);
+               throw new IllegalArgumentException("Captain not found with id: " + captainId);
+
             }
+
             return tripService.findTripsByCaptainId(captainId);
 
     }
