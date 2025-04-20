@@ -2,8 +2,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Payment;
 import com.example.demo.services.PaymentService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,18 +32,25 @@ public class PaymentController {
 
     @GetMapping("/{id}")
     public Payment getPaymentById(@PathVariable Long id) {
-        return paymentService.getPaymentById(id);
+        return paymentService.getPaymentById(id); // This will return null if not found
     }
 
     @PutMapping("/update/{id}")
     public Payment updatePayment(@PathVariable Long id, @RequestBody Payment payment) {
+        if (paymentService.getPaymentById(id) == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payment not found");
+        }
         return paymentService.updatePayment(id, payment);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deletePayment(@PathVariable Long id) {
-        paymentService.deletePayment(id);
-        return "Payment with ID " + id + " deleted successfully.";
+        try {
+            paymentService.deletePayment(id);
+            return "Payment with ID " + id + " deleted successfully.";
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payment not found");
+        }
     }
 
     @GetMapping("/findByTripId")

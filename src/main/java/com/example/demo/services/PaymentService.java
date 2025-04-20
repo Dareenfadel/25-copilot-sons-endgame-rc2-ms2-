@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.models.Payment;
 import com.example.demo.repositories.PaymentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +33,14 @@ public class PaymentService {
         if (!paymentRepository.existsById(id)) {
             return null;
         }
-        payment.setId(id); // ensure the correct ID
+        payment.setId(id);
         return paymentRepository.save(payment);
     }
 
     public void deletePayment(Long id) {
+        if (!paymentRepository.existsById(id)) {
+            throw new EntityNotFoundException("Payment not found");
+        }
         paymentRepository.deleteById(id);
     }
 
