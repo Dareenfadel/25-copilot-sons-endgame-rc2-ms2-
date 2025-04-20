@@ -45,7 +45,11 @@ public class Payment {
         this.paymentStatus = paymentStatus;
         this.trip = trip;
     }
-
+   public Payment(double amount, String paymentMethod, Boolean paymentStatus) {
+        this.paymentMethod = paymentMethod;
+        this.amount = amount;
+        this.paymentStatus = paymentStatus;
+    }
     public double getAmount() {
         return amount;
     }
