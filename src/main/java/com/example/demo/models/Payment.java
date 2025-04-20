@@ -1,10 +1,7 @@
 package com.example.demo.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -13,6 +10,7 @@ import java.util.UUID;
 public class Payment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private double amount;
@@ -20,6 +18,7 @@ public class Payment {
     private boolean paymentStatus;
 
     @OneToOne
+    @JoinColumn(name = "trip_id", referencedColumnName = "id")
     private Trip trip;
 
     public Payment() {
