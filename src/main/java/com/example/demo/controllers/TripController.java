@@ -65,8 +65,8 @@ public class TripController {
 
     @GetMapping("/findByDateRange")
     public List<Trip> findTripsWithinDateRange(@RequestParam LocalDateTime startDate, @RequestParam
-    LocalDate endDate){
-        return tripService.findTripsWithinDateRange(startDate, endDate.atTime(23, 59, 59));
+    LocalDateTime endDate){
+        return tripService.findTripsWithinDateRange(startDate, endDate);
     }
 
     @GetMapping("/findByCaptainId")
