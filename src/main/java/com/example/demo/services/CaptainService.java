@@ -36,6 +36,6 @@ public class CaptainService {
 
     public Captain getCaptainByLicenseNumber(String licenseNumber) {
         return captainRepository.findByLicenseNumber(licenseNumber)
-                .orElseThrow(() -> new EntityNotFoundException("Captain not found with license number: " + licenseNumber));
+                .orElse(null);
     }
 }

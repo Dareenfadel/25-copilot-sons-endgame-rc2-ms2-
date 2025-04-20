@@ -41,7 +41,6 @@ public class Trip {
         this.customer = customer;
         this.payment = payment;
     }
-
     public Trip(long id, LocalDateTime tripDate, String origin, String destination, double tripCost, Captain captain, Customer customer, Payment payment) {
         this.id = id;
         this.tripDate = tripDate;
