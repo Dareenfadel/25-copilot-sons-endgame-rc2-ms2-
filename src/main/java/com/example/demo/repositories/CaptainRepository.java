@@ -19,9 +19,9 @@ public interface CaptainRepository extends JpaRepository<Captain, Long> {
     Optional<Captain> findByLicenseNumber(String licenseNumber);
 
     // You can also use JPQL (Optional, as alternative to method query derivation)
-    @Query("SELECT c FROM captains c WHERE c.avgRatingScore > :threshold")
+    @Query("SELECT c FROM Captain c WHERE c.avgRatingScore > :threshold")
     List<Captain> findCaptainsByRatingAbove(Double threshold);
 
-    @Query("SELECT c FROM captains c WHERE c.licenseNumber = :licenseNumber")
+    @Query("SELECT c FROM Captain c WHERE c.licenseNumber = :licenseNumber")
     Optional<Captain> findCaptainByLicenseNumber(String licenseNumber);
 }

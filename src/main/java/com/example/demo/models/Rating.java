@@ -22,8 +22,7 @@ public class Rating {
     private String comment;
     private LocalDateTime ratingDate;
 
-    public Rating(){
-    }
+
 
     public String getId() {
         return id;
