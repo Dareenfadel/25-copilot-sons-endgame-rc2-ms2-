@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Payment")
+@Table(name = "payments")
 public class Payment {
 
     @Id
@@ -45,7 +45,11 @@ public class Payment {
         this.paymentStatus = paymentStatus;
         this.trip = trip;
     }
-
+   public Payment(double amount, String paymentMethod, Boolean paymentStatus) {
+        this.paymentMethod = paymentMethod;
+        this.amount = amount;
+        this.paymentStatus = paymentStatus;
+    }
     public double getAmount() {
         return amount;
     }
@@ -78,11 +82,11 @@ public class Payment {
         this.trip = trip;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

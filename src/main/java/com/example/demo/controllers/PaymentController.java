@@ -49,7 +49,7 @@ public class PaymentController {
             paymentService.deletePayment(id);
             return "Payment with ID " + id + " deleted successfully.";
         } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payment not found");
+            return "Payment with ID " + id + " not found.";
         }
     }
 

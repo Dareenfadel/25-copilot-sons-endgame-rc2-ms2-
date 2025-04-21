@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "trips")
 public class Trip {
 
     @Id
@@ -40,7 +41,6 @@ public class Trip {
         this.customer = customer;
         this.payment = payment;
     }
-
     public Trip(long id, LocalDateTime tripDate, String origin, String destination, double tripCost, Captain captain, Customer customer, Payment payment) {
         this.id = id;
         this.tripDate = tripDate;
@@ -51,12 +51,17 @@ public class Trip {
         this.customer = customer;
         this.payment = payment;
     }
-
-    public long getId() {
+    public Trip(LocalDateTime tripDate, String origin, String destination, double tripCost) {
+        this.tripDate = tripDate;
+        this.origin = origin;
+        this.destination = destination;
+        this.tripCost = tripCost;
+    }
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

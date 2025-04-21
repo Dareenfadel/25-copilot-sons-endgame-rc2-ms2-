@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "customers")
 public class Customer {
 
     @Id
@@ -30,6 +31,11 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.trips = trips;
+    }
+    public Customer(String name, String email, String phoneNumber) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
     public Customer() {}
 
