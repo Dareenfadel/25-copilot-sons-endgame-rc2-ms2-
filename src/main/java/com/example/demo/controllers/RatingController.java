@@ -30,7 +30,7 @@ public class RatingController {
         Rating updated = ratingService.updateRating(id, updatedRating);
         
         if (updated == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rating not found");
+            return null;
         }
         
         return updated;
