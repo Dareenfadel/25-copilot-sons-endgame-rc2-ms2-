@@ -12,16 +12,9 @@ import java.util.Optional;
 @Repository
 public interface CaptainRepository extends JpaRepository<Captain, Long> {
 
-    // Method to find all captains with a rating above a given threshold
+    @Query("SELECT c FROM Captain c WHERE c.avgRatingScore > :threshold")
     List<Captain> findByAvgRatingScoreGreaterThan(Double threshold);
 
-    // Method to find a captain by their license number
-    Optional<Captain> findByLicenseNumber(String licenseNumber);
-
-    // You can also use JPQL (Optional, as alternative to method query derivation)
-    @Query("SELECT c FROM Captain c WHERE c.avgRatingScore > :threshold")
-    List<Captain> findCaptainsByRatingAbove(Double threshold);
-
     @Query("SELECT c FROM Captain c WHERE c.licenseNumber = :licenseNumber")
-    Optional<Captain> findCaptainByLicenseNumber(String licenseNumber);
+    Optional<Captain> findByLicenseNumber(String licenseNumber);
 }

@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.models.Captain;
 import com.example.demo.repositories.CaptainRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +13,7 @@ import java.util.Optional;
 public class CaptainService {
 
     private final CaptainRepository captainRepository;
-
+    @Autowired
     public CaptainService(CaptainRepository captainRepository) {
         this.captainRepository = captainRepository;
     }

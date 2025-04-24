@@ -9,32 +9,30 @@ public class Captain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // Unique ID with auto-generation strategy
+    private Long id;
 
     @Column(nullable = false)
-    private String name;  // Name of the captain
+    private String name;
 
     @Column(nullable = false, unique = true)
-    private String licenseNumber;  // License number of the captain
-
+    private String licenseNumber;
     @Column(nullable = false)
-    private Double avgRatingScore;  // Average rating score
+    private Double avgRatingScore;
 
     @OneToMany(mappedBy = "captain", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Trip> trips;
-    // Default constructor
+
     public Captain() {
-        this.avgRatingScore = 0.0;  // Default value for avgRatingScore
+        this.avgRatingScore = 0.0;
     }
 
-    // Partial constructor (with name, license number, and rating score)
+
     public Captain(String name, String licenseNumber, Double avgRatingScore) {
         this.name = name;
         this.licenseNumber = licenseNumber;
         this.avgRatingScore = avgRatingScore;
     }
 
-    // Full constructor (with all attributes including ID)
     public Captain(Long id, String name, String licenseNumber, Double avgRatingScore) {
         this.id = id;
         this.name = name;
@@ -42,7 +40,6 @@ public class Captain {
         this.avgRatingScore = avgRatingScore;
     }
 
-    // Getters and setters
 
     public Long getId() {
         return id;
@@ -76,7 +73,7 @@ public class Captain {
         this.avgRatingScore = avgRatingScore;
     }
 
-    // Override toString for easier printing (optional)
+
     @Override
     public String toString() {
         return "Captain{" +

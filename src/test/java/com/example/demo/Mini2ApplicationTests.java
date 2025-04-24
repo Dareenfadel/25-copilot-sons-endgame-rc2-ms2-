@@ -1,14 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.models.*;
 import com.example.demo.repositories.*;
 import com.example.demo.services.*;
-import com.example.demo.models.*;
-
-import org.springframework.beans.factory.annotation.Value;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.*;
@@ -68,7 +66,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
-class Mini2ApplicationTest {
+class Mini2ApplicationTests {
 
 	@Autowired
 	private RestTemplate restTemplate;
