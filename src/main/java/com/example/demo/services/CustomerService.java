@@ -46,9 +46,8 @@ public class CustomerService {
 
 
     public void deleteCustomer(Long id) {
-        if (!customerRepository.existsById(id)) {
-            return;        }
-        customerRepository.deleteById(id);
+        Optional<Customer> customer = customerRepository.findById(id);
+        customerRepository.deleteById(customer.get().getId());
     }
 
 
