@@ -33,13 +33,12 @@ public class CustomerService {
 
     public Customer getCustomerById(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
-        return customer.orElseThrow(() -> new RuntimeException("Customer not found with ID: " + id));
-    }
+        return customer.orElse(null);    }
 
 
     public Customer updateCustomer(Long id, Customer customer) {
         if (!customerRepository.existsById(id)) {
-            throw new RuntimeException("Customer not found with ID: " + id);
+            return null;
         }
         customer.setId(id);
         return customerRepository.save(customer);
@@ -48,8 +47,7 @@ public class CustomerService {
 
     public void deleteCustomer(Long id) {
         if (!customerRepository.existsById(id)) {
-            throw new RuntimeException("Customer not found with ID: " + id);
-        }
+            return;        }
         customerRepository.deleteById(id);
     }
 
