@@ -32,7 +32,6 @@ public class TripController {
 
     @PostMapping("/addTrip")
     public Trip addTrip(@RequestBody Trip trip){
-        //currently allowing null attributes, awaiting test files
             return tripService.addTrip(trip);
     }
 
