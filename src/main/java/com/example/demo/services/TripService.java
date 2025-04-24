@@ -31,12 +31,15 @@ public class TripService {
     }
 
     public Trip getTripById(Long id) {
-        return tripRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Trip not found with id: " + id));
+        return tripRepository.findById(id).orElse(null);
     }
 
     public Trip updateTrip(Long id, Trip trip) {
         //To update trip details such as origin, destination, or cost.
         Trip existingTrip = getTripById(id);
+        if(existingTrip==null) {
+            return null;
+        }
         if(trip.getOrigin()!=null)
             existingTrip.setOrigin(trip.getOrigin());
         if(trip.getDestination()!=null)
