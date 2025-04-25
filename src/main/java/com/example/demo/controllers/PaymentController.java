@@ -37,9 +37,6 @@ public class PaymentController {
 
     @PutMapping("/update/{id}")
     public Payment updatePayment(@PathVariable Long id, @RequestBody Payment payment) {
-        if (paymentService.getPaymentById(id) == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Payment not found");
-        }
         return paymentService.updatePayment(id, payment);
     }
 

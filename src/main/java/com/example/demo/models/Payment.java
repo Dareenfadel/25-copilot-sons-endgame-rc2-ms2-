@@ -24,37 +24,38 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(double amount, String paymentMethod, Trip trip) {
+    public Payment(Double amount, String paymentMethod, Trip trip) {
         this.amount = amount;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = false;
         this.trip = trip;
     }
 
-    public Payment(double amount, String paymentMethod, boolean paymentStatus, Trip trip) {
+    public Payment(Double amount, String paymentMethod, Boolean paymentStatus, Trip trip) {
         this.amount = amount;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.trip = trip;
     }
 
-    public Payment(long id, double amount, String paymentMethod, boolean paymentStatus, Trip trip) {
+    public Payment(Long id, Double amount, String paymentMethod, Boolean paymentStatus, Trip trip) {
         this.id = id;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.trip = trip;
     }
-   public Payment(double amount, String paymentMethod, Boolean paymentStatus) {
+   public Payment(Double amount, String paymentMethod, Boolean paymentStatus) {
         this.paymentMethod = paymentMethod;
         this.amount = amount;
         this.paymentStatus = paymentStatus;
     }
+
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -66,11 +67,11 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public boolean isPaymentStatus() {
+    public Boolean getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(boolean paymentStatus) {
+    public void setPaymentStatus(Boolean paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
@@ -89,4 +90,5 @@ public class Payment {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
